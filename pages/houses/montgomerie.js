@@ -5,8 +5,8 @@ import PostFeed from "@/components/PostFeed"
 export default function Home() {
   return(
     <div className="flex">
-      <GlowingBlob />
-      <SideBar />
+      <GlowingBlob style={"montgomerie-blob"}/>
+      <SideBar house={"mo-sidebar sidebar-icon group"}/>
       <PostFeed />
     </div>
   )

@@ -1,10 +1,10 @@
 import React from 'react'
 
-const GlowingBlob = () => {
+const GlowingBlob = ({ style }) => {
     return (
         <>
-            <div id="blob"> </div>
-            <div id="blur"> </div>
+            <div id={style}> </div>
+            <div className="h-full w-full absolute z-[-1] backdrop-blur-[200px]"> </div>
         </> 
   )
 }
