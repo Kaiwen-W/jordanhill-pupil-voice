@@ -68,6 +68,15 @@ function SignInButton() {
   );
 }
 
+// Sign out button
+function SignOutButton() {
+  return (
+    <div className="bg-white">
+      <button onClick={() => signOut(auth)}>Sign Out</button>
+    </div>
+  );
+}
+
 function UsernameForm() {
   const [formValue, setFormValue] = useState("");
   const [isValid, setIsValid] = useState(false);
@@ -136,7 +145,7 @@ function UsernameForm() {
 
   return (
     !username && (
-      <section>
+      <section className="bg-white">
         <h3>Choose Username</h3>
         <form onSubmit={onSubmit}>
           <input
@@ -150,7 +159,7 @@ function UsernameForm() {
             isValid={isValid}
             loading={loading}
           />
-          <button type="submit" className="btn-green" disabled={!isValid}>
+          <button type="submit" className="" disabled={!isValid}>
             Choose
           </button>
         </form>
@@ -163,9 +172,9 @@ function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
     return <p>Checking...</p>;
   } else if (isValid) {
-    return <p className="text-success">{username} is available!</p>;
+    return <p className="">{username} is available!</p>;
   } else if (username && !isValid) {
-    return <p className="text-danger">That username is taken!</p>;
+    return <p className="">That username is taken!</p>;
   } else {
     return <p></p>;
   }
