@@ -6,6 +6,7 @@ import debounce from "lodash.debounce";
 import { auth, googleAuthProvider } from "@/lib/firebase";
 import { doc, writeBatch, getDoc, getFirestore } from "firebase/firestore";
 import { signInWithPopup, signOut } from "firebase/auth";
+import Link from "next/link";
 
 const enter = () => {
   const { user, username } = useContext(UserContext);
@@ -25,22 +26,42 @@ const enter = () => {
       {user ? (
         !username ? (
           // if user doesn't have username
-          <UsernameForm />
+          <>
+            <GlowingBlob style={houseStyle} />
+            <UsernameForm />
+            <GoHome />
+          </>
         ) : (
           // if user has username
-          <SignOutButton />
+          <>
+            <GlowingBlob style={houseStyle} />
+            <SignOutButton />
+            <GoHome />
+          </>
         )
       ) : (
         // no user or username
         <>
           <GlowingBlob style={houseStyle} />
           <SignInButton />
+          <GoHome />
         </>
       )}
     </main>
   );
 };
 export default enter;
+
+function GoHome() {
+  return (
+    <div className="top-5 fixed ml-3">
+      <Link href="/" className="text-sm font-semibold leading-6 text-gray-300">
+        <span aria-hidden="true"> ← </span>
+        Go Home
+      </Link>
+    </div>
+  );
+}
 
 function SignInButton() {
   const signInWithGoogle = async () => {
@@ -68,18 +89,35 @@ function SignInButton() {
   );
 }
 
-// Sign out button
 function SignOutButton() {
   return (
-    <div className="bg-white">
-      <button onClick={() => signOut(auth)}>Sign Out</button>
+    <div className="flex justify-center items-center">
+      <div
+        className="bg-gray-800/30 border border-gray-900   
+                    mx-0 my-6 p-8 rounded-lg border-solid 
+                    shadow-md z-1
+                    backdrop-blur-[100px] mt-[300px]
+                  "
+      >
+        <div>
+          <button
+            className="flex w-full justify-center rounded-md text-white p-4"
+            onClick={() => signOut(auth)}
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
 function UsernameForm() {
   const [formValue, setFormValue] = useState("");
+  const [house, setHouse] = useState("");
+
   const [isValid, setIsValid] = useState(false);
+  const [isHouseValid, setIsHouseValid] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { user, username } = useContext(UserContext);
@@ -95,6 +133,7 @@ function UsernameForm() {
     const batch = writeBatch(getFirestore());
     batch.set(userDoc, {
       username: formValue,
+      house: house,
       photoURL: user.photoURL,
       displayName: user.displayName,
     });
@@ -143,38 +182,84 @@ function UsernameForm() {
     []
   );
 
+  const onChangeHouse = (event) => {
+    const house = event.target.value;
+    setHouse(house);
+    setIsHouseValid(true);
+  };
+
   return (
     !username && (
-      <section className="bg-white">
-        <h3>Choose Username</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            name="username"
-            placeholder="myname"
-            value={formValue}
-            onChange={onChange}
-          />
-          <UsernameMessage
-            username={formValue}
-            isValid={isValid}
-            loading={loading}
-          />
-          <button type="submit" className="" disabled={!isValid}>
-            Choose
-          </button>
-        </form>
-      </section>
+      <div className="flex justify-center items-center">
+        <div
+          className="bg-gray-800/30 border border-gray-900   
+                    mx-0 my-6 p-8 rounded-lg border-solid 
+                    shadow-md z-1
+                    backdrop-blur-[100px] mt-[250px]
+                    w-10/12 h-72
+                  "
+        >
+          <h1 className="text-white text-4xl justify-center flex">
+            All Inputs in the Form are Final
+          </h1>
+
+          <div className="flex justify-between">
+            <h3 className="text-white text-2xl">Choose Username</h3>
+            <h3 className="text-white text-2xl float-right">Choose House</h3>
+          </div>
+
+          <form onSubmit={onSubmit} className="">
+            <div className="flex justify-between">
+              <input
+                className="bg-gray-800/30 block h-10 w-1/3 my-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                name="username"
+                placeholder=" Enter Name"
+                value={formValue}
+                onChange={onChange}
+              />
+
+              <select
+                className="bg-gray-800/30 block h-10 w-1/3 mt-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                name="house"
+                onChange={onChangeHouse}
+              >
+                <option value="" selected disabled hidden>
+                  Choose House
+                </option>
+                <option value="montgomerie">Montgomerie</option>
+                <option value="crawfurd">Crawfurd</option>
+                <option value="stjohn">St John</option>
+                <option value="smith">Smith</option>
+              </select>
+            </div>
+
+            <UsernameMessage
+              username={formValue}
+              isValid={isValid}
+              loading={loading}
+            />
+
+            <button
+              type="submit"
+              className="flex w-full justify-center mt-12 rounded-md bg-gray-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              disabled={!isHouseValid || !isValid}
+            >
+              Choose
+            </button>
+          </form>
+        </div>
+      </div>
     )
   );
 }
 
 function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
-    return <p>Checking...</p>;
+    return <p className="text-white">Checking...</p>;
   } else if (isValid) {
-    return <p className="">{username} is available!</p>;
+    return <p className="text-green-600">{username} is available!</p>;
   } else if (username && !isValid) {
-    return <p className="">That username is taken!</p>;
+    return <p className="text-red-600">That username is taken!</p>;
   } else {
     return <p></p>;
   }
