@@ -75,6 +75,7 @@ function SignInButton() {
       mx-0 my-6 p-8 rounded-lg border-solid 
       shadow-md z-1
       backdrop-blur-[100px] mt-[300px]
+      justify-center items-center
       "
       >
         <button
@@ -97,6 +98,7 @@ function SignOutButton() {
                     mx-0 my-6 p-8 rounded-lg border-solid 
                     shadow-md z-1
                     backdrop-blur-[100px] mt-[300px]
+                    justify-center items-center
                   "
       >
         <div>
@@ -197,6 +199,7 @@ function UsernameForm() {
                     shadow-md z-1
                     backdrop-blur-[100px] mt-[250px]
                     w-10/12 h-72
+                    justify-center items-center
                   "
         >
           <h1 className="text-white text-4xl justify-center flex">
