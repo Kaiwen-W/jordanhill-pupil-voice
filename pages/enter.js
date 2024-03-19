@@ -91,19 +91,37 @@ function SignInButton() {
 }
 
 function SignOutButton() {
+  const { user, username } = useContext(UserContext);
+
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center flex-col">
       <div
         className="bg-gray-800/30 border border-gray-900   
                     mx-0 my-6 p-8 rounded-lg border-solid 
                     shadow-md z-1
-                    backdrop-blur-[100px] mt-[300px]
+                    backdrop-blur-[100px]
+                    justify-center items-center
+										mt-[230px]
+                  "
+      >
+        <div className="flex w-full justify-center rounded-md text-white p-4">
+          <Link legacyBehavior href={`/${username}`}>
+            <a> Go to Account </a>
+          </Link>
+        </div>
+      </div>
+
+      <div
+        className="bg-gray-800/30 border border-gray-900   
+                    mx-0 my-6 p-8 rounded-lg border-solid 
+                    shadow-md z-1
+                    backdrop-blur-[100px]
                     justify-center items-center
                   "
       >
         <div>
           <button
-            className="flex w-full justify-center rounded-md text-white p-4"
+            className="flex w-full justify-center rounded-md text-red-600 p-4"
             onClick={() => signOut(auth)}
           >
             Sign Out
