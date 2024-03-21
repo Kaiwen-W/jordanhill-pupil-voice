@@ -14,48 +14,100 @@ const SideBar = ({ house }) => {
   const { user, username } = useContext(UserContext);
 
   return (
-    <div
-      className="fixed top-0 left-0 h-screen w-16 m-0 
-    flex flex-col bg-gray-900 text-white shadow z-0 items-center"
-    >
-      <SideBarIcon
-        icon={<FaHome size="28" />}
-        text="Home"
-        link="../"
-        house={house}
-      />
-      <LineBreak />
+    <>
+      {!user && (
+        <div
+          className="fixed top-0 left-0 h-screen w-16 m-0 
+      flex flex-col bg-gray-900 text-white shadow z-0 items-center"
+        >
+          <SideBarIcon
+            icon={<FaHome size="28" />}
+            text="Home"
+            link="../"
+            house={house}
+          />
+          <LineBreak />
 
-      <SideBarIcon
-        icon={<MdSportsRugby size="28" />}
-        text="Sports"
-        house={house}
-      />
-      <SideBarIcon
-        icon={<CiMusicNote1 size="28" />}
-        text="Music"
-        house={house}
-      />
-      <SideBarIcon
-        icon={<IoMdSchool size="28" />}
-        text="Academia"
-        house={house}
-      />
-      <SideBarIcon icon={<FaPaintBrush size="28" />} text="Art" house={house} />
-      <LineBreak />
+          <SideBarIcon
+            icon={<MdSportsRugby size="28" />}
+            text="Sports"
+            house={house}
+          />
+          <SideBarIcon
+            icon={<CiMusicNote1 size="28" />}
+            text="Music"
+            house={house}
+          />
+          <SideBarIcon
+            icon={<IoMdSchool size="28" />}
+            text="Academia"
+            house={house}
+          />
+          <SideBarIcon
+            icon={<FaPaintBrush size="28" />}
+            text="Art"
+            house={house}
+          />
+          <LineBreak />
 
-      <SideBarIcon
-        icon={<IoIosCreate size="28" />}
-        text="Create"
-        house={house}
-      />
-      <SideBarIcon
-        icon={<MdAccountCircle size="28" />}
-        text="Account"
-        house={house}
-        link={`/${username}`}
-      />
-    </div>
+          <SideBarIcon
+            icon={<IoIosCreate size="28" />}
+            text="Create"
+            house={house}
+          />
+        </div>
+      )}
+
+      {user && (
+        <div
+          className="fixed top-0 left-0 h-screen w-16 m-0 
+            flex flex-col bg-gray-900 text-white shadow z-0 items-center"
+        >
+          <SideBarIcon
+            icon={<FaHome size="28" />}
+            text="Home"
+            link="../"
+            house={house}
+          />
+          <LineBreak />
+
+          <SideBarIcon
+            icon={<MdSportsRugby size="28" />}
+            text="Sports"
+            house={house}
+          />
+          <SideBarIcon
+            icon={<CiMusicNote1 size="28" />}
+            text="Music"
+            house={house}
+          />
+          <SideBarIcon
+            icon={<IoMdSchool size="28" />}
+            text="Academia"
+            house={house}
+          />
+          <SideBarIcon
+            icon={<FaPaintBrush size="28" />}
+            text="Art"
+            house={house}
+          />
+          <LineBreak />
+
+          <SideBarIcon
+            icon={<IoIosCreate size="28" />}
+            text="Create"
+            house={house}
+          />
+
+          <SideBarIcon
+            icon={<MdAccountCircle size="28" />}
+            text="Account"
+            house={house}
+            link={`/${username}`}
+          />
+        </div>
+      )}
+    </>
   );
 };
 
