@@ -5,7 +5,6 @@ import { IoIosCreate } from "react-icons/io";
 import { MdAccountCircle } from "react-icons/md";
 import { FaPaintBrush } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-import Link from "next/link";
 
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
@@ -18,7 +17,7 @@ const SideBar = ({ house }) => {
       {!user && (
         <div
           className="fixed top-0 left-0 h-screen w-16 m-0 
-      flex flex-col bg-gray-900 text-white shadow z-0 items-center"
+          flex flex-col bg-gray-900 text-white shadow z-0 items-center"
         >
           <SideBarIcon
             icon={<FaHome size="28" />}
@@ -26,6 +25,7 @@ const SideBar = ({ house }) => {
             link="../"
             house={house}
           />
+
           <LineBreak />
 
           <SideBarIcon
@@ -62,6 +62,7 @@ const SideBar = ({ house }) => {
             link="../"
             house={house}
           />
+
           <LineBreak />
 
           <SideBarIcon
@@ -84,6 +85,7 @@ const SideBar = ({ house }) => {
             text="Art"
             house={house}
           />
+
           <LineBreak />
 
           <SideBarIcon

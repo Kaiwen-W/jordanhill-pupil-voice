@@ -8,7 +8,7 @@ export default function PostFeed({ posts, admin }) {
     : null;
 }
 
-function PostItem() {
+function PostItem({ post, admin }) {
   // Calculates word count and approximate read time
   const wordCount = post?.content.trim().split(/\s+/g).length;
   const minutesToRead = (wordCount / 100 + 1).toFixed(0);
@@ -16,20 +16,22 @@ function PostItem() {
   return (
     <div
       className="h-2/5 w-10/12
-    bg-gray-800/30 border border-gray-900   
-    mx-0 my-6 p-8 rounded-lg border-solid 
-    shadow-md z-1
-    backdrop-blur-[100px]"
+      bg-gray-800/30 border border-gray-900   
+      my-6 p-8 rounded-lg border-solid 
+      shadow-md z-1
+      backdrop-blur-[100px]
+      ml-16 
+      text-white"
     >
-      <Link>
-        <a href={`/${post.username}`}>
+      <Link legacyBehavior href={`/${post.username}`}>
+        <a>
           <strong> By @{post.username}</strong>
         </a>
       </Link>
 
-      <Link>
+      <Link legacyBehavior href={`/${post.username}/${post.slug}`}>
         <h2>
-          <a href={`/${post.username}/${post.slug}`}>{post.title}</a>
+          <a>{post.title}</a>
         </h2>
       </Link>
 
@@ -37,7 +39,7 @@ function PostItem() {
         <span>
           {wordCount} words. {minutesToRead} min read
         </span>
-        <span className="">💗 {post.heartCount || 0} Hearts</span>{" "}
+        <span className="">💗 {post.heartCount || 0} Hearts</span>
         {/* push-left */}
       </footer>
 
