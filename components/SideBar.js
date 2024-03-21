@@ -48,13 +48,6 @@ const SideBar = ({ house }) => {
             text="Art"
             house={house}
           />
-          <LineBreak />
-
-          <SideBarIcon
-            icon={<IoIosCreate size="28" />}
-            text="Create"
-            house={house}
-          />
         </div>
       )}
 
