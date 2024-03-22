@@ -20,7 +20,6 @@ function PostItem({ post, admin }) {
       my-6 p-8 rounded-lg border-solid 
       shadow-md z-1
       backdrop-blur-[100px]
-      ml-16 
       text-white"
     >
       <Link legacyBehavior href={`/${post.username}`}>

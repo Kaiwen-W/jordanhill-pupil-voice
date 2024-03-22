@@ -1,3 +1,5 @@
+"use client";
+
 import { MdSportsRugby } from "react-icons/md";
 import { CiMusicNote1 } from "react-icons/ci";
 import { IoMdSchool } from "react-icons/io";
@@ -5,6 +7,7 @@ import { IoIosCreate } from "react-icons/io";
 import { MdAccountCircle } from "react-icons/md";
 import { FaPaintBrush } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
+import { PiSignInFill } from "react-icons/pi";
 
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
@@ -14,7 +17,7 @@ const SideBar = ({ house }) => {
 
   return (
     <>
-      {!user && (
+      {!username ? (
         <div
           className="fixed top-0 left-0 h-screen w-16 m-0 
           flex flex-col bg-gray-900 text-white shadow z-0 items-center"
@@ -48,10 +51,17 @@ const SideBar = ({ house }) => {
             text="Art"
             house={house}
           />
-        </div>
-      )}
 
-      {user && (
+          <LineBreak />
+
+          <SideBarIcon
+            icon={<PiSignInFill size="28" />}
+            text="Sign In"
+            house={house}
+            link="/enter"
+          />
+        </div>
+      ) : (
         <div
           className="fixed top-0 left-0 h-screen w-16 m-0 
             flex flex-col bg-gray-900 text-white shadow z-0 items-center"
@@ -102,6 +112,7 @@ const SideBar = ({ house }) => {
           />
         </div>
       )}
+      ;
     </>
   );
 };

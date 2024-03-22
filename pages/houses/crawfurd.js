@@ -79,17 +79,31 @@ export default function CrawfurdPosts(props) {
       <GlowingBlob style={"crawfurd-blob"} />
       <SideBar house={"cr-sidebar sidebar-icon group"} />
 
-      <PostFeed posts={posts} />
+      <div className="ml-16">
+        <div className="flex items-center justify-center flex-col">
+          <PostFeed posts={posts} />
 
-      {!loading && !postsEnd && (
-        <button onClick={getMorePosts} className="text-white">
-          Load more
-        </button>
-      )}
+          {!loading && !postsEnd && (
+            <button
+              onClick={getMorePosts}
+              className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center"
+            >
+              Load more
+            </button>
+          )}
 
-      <Loader show={loading} />
+          <Loader show={loading} />
 
-      {postsEnd && "You have reached the end!"}
+          {postsEnd && (
+            <button
+              disabled
+              className="text-white bg-gray-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center"
+            >
+              You have reached the end!
+            </button>
+          )}
+        </div>
+      </div>
     </>
   );
 }

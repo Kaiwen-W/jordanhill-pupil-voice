@@ -102,12 +102,15 @@ function SignOutButton() {
                     backdrop-blur-[100px]
                     justify-center items-center
 										mt-[230px]
+                    w-40 h-30
                   "
       >
         <div className="flex w-full justify-center rounded-md text-white p-4">
-          <Link legacyBehavior href={`/${username}`}>
-            <a> Go to Account </a>
-          </Link>
+          <button className="p-4">
+            <Link legacyBehavior href={`/${username}`}>
+              <a> Go to Account </a>
+            </Link>
+          </button>
         </div>
       </div>
 
