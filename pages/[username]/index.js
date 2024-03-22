@@ -12,6 +12,7 @@ import {
 import PostFeed from "@/components/PostFeed";
 import UserProfile from "@/components/UserProfile";
 import React from "react";
+import GlowingBlob from "@/components/GlowingBlob";
 
 export async function getServerSideProps({ query: urlQuery }) {
   const { username } = urlQuery;
@@ -47,10 +48,17 @@ export async function getServerSideProps({ query: urlQuery }) {
 }
 
 const UserProfilePage = ({ user, posts }) => {
+  const houseBlob = user.house + "-blob";
+  console.log(houseBlob);
+
   return (
     <main>
+      <GlowingBlob style={houseBlob} />
       <UserProfile user={user} />
-      <PostFeed posts={posts} />
+
+      <div className="flex justify-center items-center flex-col">
+        <PostFeed posts={posts} />
+      </div>
     </main>
   );
 };
