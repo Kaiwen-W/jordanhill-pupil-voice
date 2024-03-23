@@ -178,7 +178,7 @@ function UsernameForm() {
       photoURL: user.photoURL,
       displayName: user.displayName,
     });
-    batch.set(usernameDoc, { uid: user.uid });
+    batch.set(usernameDoc, { uid: user.uid, house: house });
 
     await batch.commit();
   };

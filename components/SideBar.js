@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { UserContext } from "@/lib/context";
 
 const SideBar = ({ house }) => {
-  const { user, username } = useContext(UserContext);
+  const { username } = useContext(UserContext);
 
   return (
     <>
