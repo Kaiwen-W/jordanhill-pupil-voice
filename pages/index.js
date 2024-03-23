@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+  });
   return (
     <main className="">
       <div className="relative isolate px-6 pt-8 lg:px-8">
