@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <UserContext.Provider value={userData}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </UserContext.Provider>
   );
 }

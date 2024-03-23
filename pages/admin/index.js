@@ -1,7 +1,9 @@
-import React from "react";
+import AuthCheck from "@/components/AuthCheck";
 
-const index = () => {
-  return <div>index</div>;
-};
-
-export default index;
+export default function AdminPostsPage() {
+  return (
+    <main>
+      <AuthCheck></AuthCheck>
+    </main>
+  );
+}

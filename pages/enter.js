@@ -101,7 +101,7 @@ function SignOutButton() {
                     shadow-md z-1
                     backdrop-blur-[100px]
                     justify-center items-center
-										mt-[230px]
+                    mt-24
                     w-40 h-30
                   "
       >
@@ -109,6 +109,24 @@ function SignOutButton() {
           <button className="p-4">
             <Link legacyBehavior href={`/${username}`}>
               <a> Go to Account </a>
+            </Link>
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="bg-gray-800/30 border border-gray-900   
+                    mx-0 my-6 p-8 rounded-lg border-solid 
+                    shadow-md z-1
+                    backdrop-blur-[100px]
+                    justify-center items-center
+                    w-40 h-30
+                  "
+      >
+        <div className="flex w-full justify-center rounded-md text-white p-4">
+          <button className="p-4">
+            <Link legacyBehavior href={"/admin"}>
+              <a> Create Posts</a>
             </Link>
           </button>
         </div>

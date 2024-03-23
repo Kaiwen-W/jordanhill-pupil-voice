@@ -1,5 +1,3 @@
-"use client";
-
 import { MdSportsRugby } from "react-icons/md";
 import { CiMusicNote1 } from "react-icons/ci";
 import { IoMdSchool } from "react-icons/io";
@@ -102,6 +100,7 @@ const SideBar = ({ house }) => {
             icon={<IoIosCreate size="28" />}
             text="Create"
             house={house}
+            link={"/admin"}
           />
 
           <SideBarIcon
