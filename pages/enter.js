@@ -22,30 +22,30 @@ const enter = () => {
     houseStyles[Math.floor(houseStyles.length * Math.random())];
 
   return (
-    <main>
+    <main className="overflow-hidden">
       {user ? (
         !username ? (
           // if user doesn't have username
-          <>
+          <div className="overflow-hidden">
             <GlowingBlob style={houseStyle} />
             <UsernameForm />
             <GoHome />
-          </>
+          </div>
         ) : (
           // if user has username
-          <>
+          <div className="overflow-hidden">
             <GlowingBlob style={houseStyle} />
             <SignOutButton />
             <GoHome />
-          </>
+          </div>
         )
       ) : (
         // no user or username
-        <>
+        <div className="overflow-hidden">
           <GlowingBlob style={houseStyle} />
           <SignInButton />
           <GoHome />
-        </>
+        </div>
       )}
     </main>
   );
