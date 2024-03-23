@@ -63,6 +63,7 @@ export default function AdminPostsPage(props) {
 }
 
 function PostList() {
+  const router = useRouter();
   const ref = collection(
     getFirestore(),
     "users",
