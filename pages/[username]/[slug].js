@@ -13,6 +13,11 @@ import {
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useRouter } from "next/router";
 import GlowingBlob from "@/components/GlowingBlob";
+import AuthCheck from "@/components/AuthCheck";
+import HeartButton from "@/components/HeartButton";
+import Link from "next/link";
+import { useContext, useEffect } from "react";
+import { UserContext } from "@/lib/context";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -53,12 +58,17 @@ export async function getStaticPaths() {
 }
 
 export default function Post(props) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+  });
+
   const router = useRouter();
 
   const postRef = doc(getFirestore(), props.path);
   const [realtimePost] = useDocumentData(postRef);
 
   const post = realtimePost || props.post;
+  const { user: currentUser } = useContext(UserContext);
 
   const blobStyle = post.house + "-blob";
   return (
@@ -85,6 +95,26 @@ export default function Post(props) {
           <p>
             <strong>{post.heartCount || 0} 🤍</strong>
           </p>
+
+          <AuthCheck
+            fallback={
+              <Link href="/enter">
+                <button className="flex mt-5 justify-center rounded-md bg-gray-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800">
+                  💗 Sign Up
+                </button>
+              </Link>
+            }
+          >
+            <HeartButton postRef={postRef} />
+          </AuthCheck>
+
+          {currentUser?.uid === post.uid && (
+            <Link href={`/admin/${post.slug}`}>
+              <button className="flex mt-5 justify-center rounded-md bg-gray-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800">
+                Edit Post
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </main>
