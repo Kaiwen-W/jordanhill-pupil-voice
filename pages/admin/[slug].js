@@ -38,6 +38,12 @@ function PostManager() {
   );
   const [post] = useDocumentDataOnce(postRef);
 
+  function changePreview() {
+    const id = document.getElementById("controls");
+    preview ? (id.style.display = "inline") : (id.style.display = "none");
+    setPreview(!preview);
+  }
+
   return (
     <main>
       {post && (
@@ -47,7 +53,7 @@ function PostManager() {
           </button>
           <div className="flex flex-row">
             <section
-              className="h-3-5 w-3/5
+              className="w-3/5
                       bg-gray-800/30 border border-gray-900   
                       my-6 p-8 rounded-lg border-solid 
                       shadow-md z-1
@@ -56,7 +62,7 @@ function PostManager() {
                       ml-[5%]"
             >
               <h1 className="font-bold text-3xl mb-3 ">{post.title}</h1>
-              <p className="text-gray-100 text-lg ">ID: {post.slug}</p>
+              <p className="text-gray-100 text-xl ">ID: {post.slug}</p>
 
               <PostForm
                 postRef={postRef}
@@ -78,7 +84,7 @@ function PostManager() {
               <h3>Tools</h3>
               <button
                 className="text-white w-30 ml-2 mt-5 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center"
-                onClick={() => setPreview(!preview)}
+                onClick={changePreview}
               >
                 {preview ? "Edit" : "Preview"}
               </button>
@@ -124,15 +130,15 @@ function PostForm({ defaultValues, postRef, preview }) {
     <div>
       <form onSubmit={handleSubmit(updatePost)}>
         {preview && (
-          <div className="card">
+          <div className="mt-3">
             <ReactMarkdown>{watch("content")}</ReactMarkdown>
           </div>
         )}
 
-        <div className="">
-          {/* {preview ? styles.hidden : styles.controls} */}
+        <div id="controls">
           {/* <ImageUploader> </ImageUploader> */}
           <textarea
+            className="bg-gray-800/30 block h-60 w-full my-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
             {...register("content", {
               maxLength: { value: 20000, message: "Content is Too Long" },
               minLength: { value: 10, message: "Content is Too Short" },
@@ -142,18 +148,13 @@ function PostForm({ defaultValues, postRef, preview }) {
           {errors.content && (
             <p className="text-red-600">{errors.content.message}</p>
           )}
-          <fieldset>
-            <input
-              className=""
-              // {styles.checkbox}
-              type="checkbox"
-              {...register("published")}
-            />
-            <label>Published</label>
+          <fieldset className="text-lg">
+            <input type="checkbox" {...register("published")} />
+            <label> Published</label>
           </fieldset>
           <button
             type="submit"
-            className="text-white w-30 mt-5 bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center me-2  inline-flex items-center"
+            className="text-white w-30 mt-5 bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center me-2  inline-flex items-center disabled:cursor-not-allowed disabled:brightness-90"
             disabled={!isDirty || !isValid}
           >
             Save Changes
