@@ -51,6 +51,10 @@ const UserProfilePage = ({ user, posts }) => {
   const houseBlob = user.house + "-blob";
   console.log(houseBlob);
 
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  });
+
   return (
     <main>
       <GlowingBlob style={houseBlob} />
