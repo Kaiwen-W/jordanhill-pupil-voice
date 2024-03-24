@@ -7,17 +7,33 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import AuthCheck from "@/components/AuthCheck";
+import GlowingBlob from "@/components/GlowingBlob";
+import ImageUploader from "@/components/ImageUploader";
 
 export default function AdminPostEdit() {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+  });
+
+  const houseStyles = [
+    "crawfurd-blob",
+    "montgomerie-blob",
+    "smith-blob",
+    "stjohn-blob",
+  ];
+  const houseStyle =
+    houseStyles[Math.floor(houseStyles.length * Math.random())];
+
   return (
     <AuthCheck>
+      <GlowingBlob style={houseStyle} />
       <PostManager />
     </AuthCheck>
   );
@@ -48,21 +64,24 @@ function PostManager() {
     <main>
       {post && (
         <div>
-          <button onClick={() => router.back()} className="text-white p-6">
+          <button
+            onClick={() => router.back()}
+            className="text-white pt-6 pl-6"
+          >
             ← Go back
           </button>
           <div className="flex flex-row">
             <section
               className="w-3/5
                       bg-gray-800/30 border border-gray-900   
-                      my-6 p-8 rounded-lg border-solid 
+                      my-6 py-6 px-8 rounded-lg border-solid 
                       shadow-md z-1
                       backdrop-blur-[100px]
                       text-white
                       ml-[5%]"
             >
               <h1 className="font-bold text-3xl mb-3 ">{post.title}</h1>
-              <p className="text-gray-100 text-xl ">ID: {post.slug}</p>
+              <p className="text-gray-100 text-xl mb-3">ID: {post.slug}</p>
 
               <PostForm
                 postRef={postRef}
@@ -74,14 +93,14 @@ function PostManager() {
             <aside
               className="h-3/5 w-1/5
                     bg-gray-800/30 border border-gray-900   
-                    my-6 p-8 rounded-lg border-solid 
+                    my-6 py-6 px-8 rounded-lg border-solid 
                     shadow-md z-1
                     backdrop-blur-[100px]
                     text-white
                     ml-[5%]
                     flex justify-center items-center flex-col"
             >
-              <h3>Tools</h3>
+              <h3 className="text-xl">Tools</h3>
               <button
                 className="text-white w-30 ml-2 mt-5 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center"
                 onClick={changePreview}
@@ -131,12 +150,15 @@ function PostForm({ defaultValues, postRef, preview }) {
       <form onSubmit={handleSubmit(updatePost)}>
         {preview && (
           <div className="mt-3">
-            <ReactMarkdown>{watch("content")}</ReactMarkdown>
+            <ReactMarkdown className="break-words">
+              {watch("content")}
+            </ReactMarkdown>
           </div>
         )}
 
         <div id="controls">
-          {/* <ImageUploader> </ImageUploader> */}
+          <ImageUploader> </ImageUploader>
+          <p className="text-white text-base">Write content here:</p>
           <textarea
             className="bg-gray-800/30 block h-60 w-full my-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
             {...register("content", {

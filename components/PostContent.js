@@ -31,7 +31,9 @@ export default function PostContent({ post }) {
         {""}
         on {date} {""} at {time}.
       </span>
-      <ReactMarkdown className="mt-8">{post?.content}</ReactMarkdown>
+      <ReactMarkdown className="mt-3 break-words">
+        {post?.content}
+      </ReactMarkdown>
     </div>
   );
 }
