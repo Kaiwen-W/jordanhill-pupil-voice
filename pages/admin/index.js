@@ -22,6 +22,10 @@ import toast from "react-hot-toast";
 import GlowingBlob from "@/components/GlowingBlob";
 
 export default function AdminPostsPage(props) {
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  });
+
   // const { username } = useContext(UserContext);
 
   // const [house, setHouse] = useState("");
