@@ -20,7 +20,7 @@ import {
 import { useState } from "react";
 
 // Max post to query per page
-const LIMIT = 1;
+const LIMIT = 5;
 
 export async function getServerSideProps(context) {
   const ref = collectionGroup(getFirestore(), "posts");
