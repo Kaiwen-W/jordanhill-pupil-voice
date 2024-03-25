@@ -53,7 +53,7 @@ body {
   } */
 
   #montgomerie-blob{
-    @apply h-[34vmax] aspect-[1] absolute 
+    @apply h-[34vmax] aspect-[1] fixed
     rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
     translate: -147% -77%;
@@ -61,7 +61,7 @@ body {
   }
 
   #crawfurd-blob{
-    @apply h-[34vmax] aspect-[1] absolute 
+    @apply h-[34vmax] aspect-[1] fixed
     rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
     translate: -147% -77%;
@@ -69,7 +69,7 @@ body {
   }
 
   #smith-blob{
-    @apply h-[34vmax] aspect-[1] absolute 
+    @apply h-[34vmax] aspect-[1] fixed
     rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
     translate: -147% -77%;
@@ -77,7 +77,7 @@ body {
   }
 
   #stjohn-blob{
-    @apply h-[34vmax] aspect-[1] absolute 
+    @apply h-[34vmax] aspect-[1] fixed
     rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
     translate: -147% -77%;
