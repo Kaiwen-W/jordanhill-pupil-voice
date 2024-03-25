@@ -36,11 +36,11 @@ body {
     @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
     text-white bg-gray-900 
     text-xs font-bold 
-    transition-all duration-100 scale-0 origin-left;
+    transition-all duration-100 scale-0 origin-left z-50;
   }
 
   /* Blobs */
-  @keyframes rotate {
+  /* @keyframes rotate {
     from {
       rotate: 0deg;
     }
@@ -50,33 +50,41 @@ body {
     to {
       rotate: 360deg;
     }
-  }
+  } */
 
   #montgomerie-blob{
-    @apply h-[34vmax] aspect-[1] absolute animate-[rotate_20s_infinite] rounded-[50%] 
+    @apply h-[34vmax] aspect-[1] absolute 
+    rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
-    translate: -50% -50%;
+    translate: -147% -77%;
     background: linear-gradient(to right, #f54952, #422680);
   }
 
   #crawfurd-blob{
-    @apply h-[34vmax] aspect-[1] absolute animate-[rotate_20s_infinite] rounded-[50%] 
+    @apply h-[34vmax] aspect-[1] absolute 
+    rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
-    translate: -50% -50%;
-    background: linear-gradient(to right, #00982B, #00982B);
+    translate: -147% -77%;
+    background: linear-gradient(to right, #B0F500, #073B3A);
   }
 
   #smith-blob{
-    @apply h-[34vmax] aspect-[1] absolute animate-[rotate_20s_infinite] rounded-[50%] 
+    @apply h-[34vmax] aspect-[1] absolute 
+    rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
-    translate: -50% -50%;
+    translate: -147% -77%;
     background: linear-gradient(to right, #F0BE00, #F07F00);
   }
 
   #stjohn-blob{
-    @apply h-[34vmax] aspect-[1] absolute animate-[rotate_20s_infinite] rounded-[50%] 
+    @apply h-[34vmax] aspect-[1] absolute 
+    rounded-[50%] 
     left-2/4 top-2/4 z-[-2];
-    translate: -50% -50%;
+    translate: -147% -77%;
     background: linear-gradient(to right, #0800EF, #BD00F0);
   }
 }  
+
+/* @apply h-[34vmax] aspect-[1] absolute animate-[rotate_20s_infinite] rounded-[50%] 
+left-2/4 top-2/4 z-[-2];
+translate: -50% -50%; */

@@ -1,10 +1,6 @@
 import Link from "next/link";
-import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  });
   return (
     <main className="">
       <div className="relative isolate px-6 pt-8 lg:px-8">
@@ -46,8 +42,7 @@ export default function Home() {
               Jordanhill Pupil Voice
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-400">
-              View accomplishments of other housemates. Like and comment under
-              their posts!
+              View accomplishments of other housemates. Like their posts!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a

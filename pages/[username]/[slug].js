@@ -58,10 +58,6 @@ export async function getStaticPaths() {
 }
 
 export default function Post(props) {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  });
-
   const router = useRouter();
 
   const postRef = doc(getFirestore(), props.path);
@@ -73,7 +69,7 @@ export default function Post(props) {
   const blobStyle = post.house + "-blob";
   return (
     <main>
-      <GlowingBlob style={blobStyle} />
+      <GlowingBlob houseStyle={blobStyle} />
 
       <button onClick={() => router.back()} className="text-white pl-6 pt-6">
         ← Go back

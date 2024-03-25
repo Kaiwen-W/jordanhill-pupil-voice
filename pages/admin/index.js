@@ -22,10 +22,6 @@ import toast from "react-hot-toast";
 import GlowingBlob from "@/components/GlowingBlob";
 
 export default function AdminPostsPage(props) {
-  useEffect(() => {
-    document.body.style.overflow = "auto";
-  });
-
   // const { username } = useContext(UserContext);
 
   // const [house, setHouse] = useState("");
@@ -52,13 +48,12 @@ export default function AdminPostsPage(props) {
     "smith-blob",
     "stjohn-blob",
   ];
-  const houseStyle =
-    houseStyles[Math.floor(houseStyles.length * Math.random())];
+  const blobStyle = houseStyles[Math.floor(houseStyles.length * Math.random())];
 
   return (
     <main>
       <AuthCheck>
-        <GlowingBlob style={houseStyle} />
+        <GlowingBlob houseStyle={blobStyle} />
         <PostList />
         <CreateNewPost />
       </AuthCheck>

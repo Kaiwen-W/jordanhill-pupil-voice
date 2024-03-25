@@ -9,10 +9,6 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import Link from "next/link";
 
 const enter = () => {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  });
-
   const { user, username } = useContext(UserContext);
 
   // random house colour for blob background
@@ -22,8 +18,7 @@ const enter = () => {
     "smith-blob",
     "stjohn-blob",
   ];
-  const houseStyle =
-    houseStyles[Math.floor(houseStyles.length * Math.random())];
+  const blobStyle = houseStyles[Math.floor(houseStyles.length * Math.random())];
 
   return (
     <main>
@@ -31,14 +26,14 @@ const enter = () => {
         !username ? (
           // if user doesn't have username
           <div>
-            <GlowingBlob style={houseStyle} />
+            <GlowingBlob houseStyle={blobStyle} />
             <UsernameForm />
             <GoHome />
           </div>
         ) : (
           // if user has username
           <div>
-            <GlowingBlob style={houseStyle} />
+            <GlowingBlob houseStyle={blobStyle} />
             <SignOutButton />
             <GoHome />
           </div>
@@ -46,7 +41,7 @@ const enter = () => {
       ) : (
         // no user or username
         <div>
-          <GlowingBlob style={houseStyle} />
+          <GlowingBlob houseStyle={blobStyle} />
           <SignInButton />
           <GoHome />
         </div>

@@ -76,7 +76,7 @@ export default function CrawfurdPosts(props) {
   };
   return (
     <>
-      <GlowingBlob style={"montgomerie-blob"} />
+      <GlowingBlob houseStyle={"montgomerie-blob"} />
       <SideBar house={"mo-sidebar sidebar-icon group"} />
 
       <div className="ml-16">

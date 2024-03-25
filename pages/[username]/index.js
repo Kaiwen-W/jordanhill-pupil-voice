@@ -49,15 +49,10 @@ export async function getServerSideProps({ query: urlQuery }) {
 
 const UserProfilePage = ({ user, posts }) => {
   const houseBlob = user.house + "-blob";
-  console.log(houseBlob);
-
-  useEffect(() => {
-    document.body.style.overflow = "auto";
-  });
 
   return (
     <main>
-      <GlowingBlob style={houseBlob} />
+      <GlowingBlob houseStyle={houseBlob} />
       <UserProfile user={user} />
 
       <div className="flex justify-center items-center flex-col">

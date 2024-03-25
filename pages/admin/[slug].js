@@ -18,22 +18,17 @@ import GlowingBlob from "@/components/GlowingBlob";
 import ImageUploader from "@/components/ImageUploader";
 
 export default function AdminPostEdit() {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  });
-
   const houseStyles = [
     "crawfurd-blob",
     "montgomerie-blob",
     "smith-blob",
     "stjohn-blob",
   ];
-  const houseStyle =
-    houseStyles[Math.floor(houseStyles.length * Math.random())];
+  const blobStyle = houseStyles[Math.floor(houseStyles.length * Math.random())];
 
   return (
     <AuthCheck>
-      <GlowingBlob style={houseStyle} />
+      <GlowingBlob houseStyle={blobStyle} />
       <PostManager />
     </AuthCheck>
   );
