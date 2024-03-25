@@ -8,6 +8,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <UserContext.Provider value={userData}>
+      <title>Jordanhill Pupil Achievements</title>
       <Component {...pageProps} />
       <Toaster />
     </UserContext.Provider>
