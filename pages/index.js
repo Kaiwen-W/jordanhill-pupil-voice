@@ -42,7 +42,8 @@ export default function Home() {
               Jordanhill Pupil Achievements
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-400">
-              View accomplishments of other housemates. Like their posts!
+              View accomplishments of other housemates and schoolmates. <br />
+              Create Posts, like other posts!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
