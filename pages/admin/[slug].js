@@ -128,10 +128,11 @@ function PostForm({ defaultValues, postRef, preview }) {
 
   const { isValid, isDirty } = formState;
 
-  const updatePost = async ({ content, published }) => {
+  const updatePost = async ({ content, published, category }) => {
     await updateDoc(postRef, {
       content,
       published,
+      category,
       updatedAt: serverTimestamp(),
     });
 
@@ -153,9 +154,25 @@ function PostForm({ defaultValues, postRef, preview }) {
 
         <div id="controls">
           <ImageUploader> </ImageUploader>
-          <p className="text-white text-base">Write content here:</p>
+
+          <p className="text-white text-base mt-3 mb-1">
+            Choose Category for Post:
+          </p>
+          <select
+            className="bg-gray-800/30 block h-10 w-1/3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+            name="category"
+            {...register("category")}
+          >
+            <option value="sports">Sports</option>
+            <option value="music">Music</option>
+            <option value="academia">Academia</option>
+            <option value="art">Art</option>
+            <option value="other">Other</option>
+          </select>
+
+          <p className="text-white text-base mt-3 mb-1">Write content here:</p>
           <textarea
-            className="bg-gray-800/30 block h-60 w-full my-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+            className="bg-gray-800/30 block h-60 w-full mb-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
             {...register("content", {
               maxLength: { value: 20000, message: "Content is Too Long" },
               minLength: { value: 10, message: "Content is Too Short" },

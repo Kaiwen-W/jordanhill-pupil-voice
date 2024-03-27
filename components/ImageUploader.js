@@ -67,7 +67,7 @@ export default function ImageUploader() {
           <p className="text-base mt-3">
             Paste the following in the content box to display an image:
           </p>
-          <code className="bg-gray-800/30 block text-xs w-full mt-1 mb-5 rounded-md border-0 py-1.5 pl-1 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-900">{`![alt](${downloadURL})`}</code>
+          <code className="bg-gray-800/30 block text-xs w-full mt-1 mb-3 rounded-md border-0 py-1.5 pl-1 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-900">{`![alt](${downloadURL})`}</code>
         </>
       )}
     </div>

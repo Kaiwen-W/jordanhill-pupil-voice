@@ -129,7 +129,7 @@ const SideBar = ({ house }) => {
 
           <SideBarIcon
             icon={<IoIosCreate size="28" />}
-            text="Create"
+            text="Create/Manage"
             house={house}
             link={"/admin"}
           />

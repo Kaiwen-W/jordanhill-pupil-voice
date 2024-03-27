@@ -117,6 +117,7 @@ function CreateNewPost() {
       house: userDoc.house,
       published: false,
       content: "Add your content here!",
+      category: "other",
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
       heartCount: 0,
