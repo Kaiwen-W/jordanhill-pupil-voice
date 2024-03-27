@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function CrawfurdPosts(props) {
+export default function StJohnPosts(props) {
   const [posts, setPosts] = useState(props.posts);
   const [loading, setLoading] = useState(false);
 

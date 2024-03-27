@@ -27,7 +27,8 @@ export async function getServerSideProps(context) {
   const postsQuery = query(
     ref,
     where("published", "==", true),
-    where("house", "==", "smith"),
+    where("house", "==", "montgomerie"),
+    where("category", "==", "art"),
     orderBy("createdAt", "desc"),
     limit(LIMIT)
   );
@@ -39,7 +40,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function SmithPosts(props) {
+export default function MontgomeriePosts(props) {
   const [posts, setPosts] = useState(props.posts);
   const [loading, setLoading] = useState(false);
 
@@ -59,7 +60,8 @@ export default function SmithPosts(props) {
     const postsQuery = query(
       ref,
       where("published", "==", true),
-      where("house", "==", "smith"),
+      where("house", "==", "montgomerie"),
+      where("category", "==", "art"),
       orderBy("createdAt", "desc"),
       startAfter(cursor),
       limit(LIMIT)
@@ -76,8 +78,8 @@ export default function SmithPosts(props) {
   };
   return (
     <>
-      <GlowingBlob houseStyle={"smith-blob"} />
-      <SideBar house={"sm-sidebar sidebar-icon group"} />
+      <GlowingBlob houseStyle={"montgomerie-blob"} />
+      <SideBar house={"mo-sidebar sidebar-icon group"} />
 
       <div className="ml-16">
         <div className="flex items-center justify-center flex-col">

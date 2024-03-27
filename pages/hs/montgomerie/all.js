@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function CrawfurdPosts(props) {
+export default function MontgomeriePosts(props) {
   const [posts, setPosts] = useState(props.posts);
   const [loading, setLoading] = useState(false);
 

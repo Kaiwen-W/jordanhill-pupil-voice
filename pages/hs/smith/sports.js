@@ -28,6 +28,7 @@ export async function getServerSideProps(context) {
     ref,
     where("published", "==", true),
     where("house", "==", "smith"),
+    where("category", "==", "sports"),
     orderBy("createdAt", "desc"),
     limit(LIMIT)
   );
@@ -60,6 +61,7 @@ export default function SmithPosts(props) {
       ref,
       where("published", "==", true),
       where("house", "==", "smith"),
+      where("category", "==", "sports"),
       orderBy("createdAt", "desc"),
       startAfter(cursor),
       limit(LIMIT)
