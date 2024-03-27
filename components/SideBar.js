@@ -1,18 +1,19 @@
 import { MdSportsRugby } from "react-icons/md";
-import { CiMusicNote1 } from "react-icons/ci";
+import { IoMusicalNotes } from "react-icons/io5";
 import { IoMdSchool } from "react-icons/io";
 import { IoIosCreate } from "react-icons/io";
 import { MdAccountCircle } from "react-icons/md";
 import { FaPaintBrush } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import { PiSignInFill } from "react-icons/pi";
+import { HiOutlineDotsVertical } from "react-icons/hi";
+import { MdOutlineClearAll } from "react-icons/md";
 
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
 
 const SideBar = ({ house }) => {
   const { username } = useContext(UserContext);
-
   return (
     <>
       {!username ? (
@@ -23,31 +24,46 @@ const SideBar = ({ house }) => {
           <SideBarIcon
             icon={<FaHome size="28" />}
             text="Home"
-            link="../"
+            link="/"
             house={house}
           />
 
           <LineBreak />
-
+          <SideBarIcon
+            icon={<MdOutlineClearAll size="28" />}
+            text="All"
+            house={house}
+            link="all"
+          />
           <SideBarIcon
             icon={<MdSportsRugby size="28" />}
             text="Sports"
             house={house}
+            link="sports"
           />
           <SideBarIcon
-            icon={<CiMusicNote1 size="28" />}
+            icon={<IoMusicalNotes size="28" />}
             text="Music"
             house={house}
+            link="music"
           />
           <SideBarIcon
             icon={<IoMdSchool size="28" />}
             text="Academia"
             house={house}
+            link="academia"
           />
           <SideBarIcon
             icon={<FaPaintBrush size="28" />}
             text="Art"
             house={house}
+            link="art"
+          />
+          <SideBarIcon
+            icon={<HiOutlineDotsVertical size="28" />}
+            text="Other"
+            house={house}
+            link="other"
           />
 
           <LineBreak />
@@ -67,31 +83,46 @@ const SideBar = ({ house }) => {
           <SideBarIcon
             icon={<FaHome size="28" />}
             text="Home"
-            link="../"
+            link="/"
             house={house}
           />
 
           <LineBreak />
-
+          <SideBarIcon
+            icon={<MdOutlineClearAll size="28" />}
+            text="All"
+            house={house}
+            link="all"
+          />
           <SideBarIcon
             icon={<MdSportsRugby size="28" />}
             text="Sports"
             house={house}
+            link="sports"
           />
           <SideBarIcon
-            icon={<CiMusicNote1 size="28" />}
+            icon={<IoMusicalNotes size="28" />}
             text="Music"
             house={house}
+            link="music"
           />
           <SideBarIcon
             icon={<IoMdSchool size="28" />}
             text="Academia"
             house={house}
+            link="academia"
           />
           <SideBarIcon
             icon={<FaPaintBrush size="28" />}
             text="Art"
             house={house}
+            link="art"
+          />
+          <SideBarIcon
+            icon={<HiOutlineDotsVertical size="28" />}
+            text="Other"
+            house={house}
+            link="other"
           />
 
           <LineBreak />
