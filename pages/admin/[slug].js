@@ -207,7 +207,7 @@ function DeletePostButton({ postRef }) {
     if (doIt) {
       await deleteDoc(postRef);
       router.push("/admin");
-      toast("Post Deleted ", { icon: "🗑️" });
+      toast.error("Post Deleted!");
     }
   };
 

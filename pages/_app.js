@@ -10,7 +10,24 @@ export default function App({ Component, pageProps }) {
     <UserContext.Provider value={userData}>
       <title>Jordanhill Pupil Achievements</title>
       <Component {...pageProps} />
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              background: "black",
+              color: "green",
+              border: "4px solid darkgreen",
+            },
+          },
+          error: {
+            style: {
+              background: "black",
+              color: "red",
+              border: "4px solid darkred",
+            },
+          },
+        }}
+      />
     </UserContext.Provider>
   );
 }
