@@ -1,28 +1,22 @@
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 export default function CommentList({ comments }) {
   return comments
     ? comments.map((comment) => <Comment comment={comment} />)
     : null;
-
-  // return (
-  //   <>
-  //     <div
-  //       className="w-7/9
-  //                 border border-gray-900
-  //                 p-4 rounded-lg border-solid
-  //                 shadow-md z-1
-  //                 text-white
-  //                 ml-[5%] mr-[5%]"
-  //     >
-  //       <Comment />
-  //       <Comment />
-  //     </div>
-  //   </>
-  // );
 }
 
 function Comment({ comment }) {
+  const createdAt =
+    typeof comment?.createdAt === "number"
+      ? new Date(comment.createdAt)
+      : comment.createdAt.toDate();
+
+  const createdAtString = createdAt.toISOString();
+  const date = createdAtString.substring(0, 10);
+  const time = createdAtString.substring(11, 16);
+
   return (
     <div
       className="w-8/9
@@ -33,23 +27,23 @@ function Comment({ comment }) {
       text-white
       mx-[2%]"
     >
-      {/* <Link legacyBehavior href={`/${post.username}`}>
-        <a className="text-xl">
-          <strong className="text-gray-400"> @{post.username} </strong>
+      <Link legacyBehavior href={`/${comment.username}`}>
+        <a>
+          <strong className="text-gray-400 text-base block">
+            {" "}
+            @{comment.username}{" "}
+          </strong>
         </a>
-      </Link> */}
+      </Link>
 
-      <strong className="text-gray-400 text-sm block opacity-100">
-        {" "}
-        @Joshua{" "}
-      </strong>
+      <span className="text-xs italic">
+        {date} {""} {time}
+      </span>
 
       {/* change this to react markdown later */}
-      <span className="text-xs">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut
-        efficitur quam. Aliquam quis posuere turpis. Class aptent taciti
-        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-      </span>
+      <ReactMarkdown className="text-sm break-words">
+        {comment?.content}
+      </ReactMarkdown>
     </div>
   );
 }

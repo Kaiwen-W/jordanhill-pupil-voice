@@ -49,12 +49,7 @@ export async function getStaticProps({ params }) {
       slug,
       "comments"
     );
-    const commentsQuery = query(
-      commentsRef
-      // orderBy("createdAt", "asc"),
-      // where("path", "==", path)
-      // limit(LIMIT)
-    );
+    const commentsQuery = query(commentsRef, orderBy("createdAt", "asc"));
 
     comments = (await getDocs(commentsQuery)).docs.map(commentToJSON);
 
@@ -63,7 +58,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { post, path, comments },
-    revalidate: 5000,
+    revalidate: 1000,
   };
 }
 
@@ -143,11 +138,21 @@ export default function Post(props) {
         </div>
       </div>
 
-      <AuthCheck>
-        <CreateNewComment props={props} />
-      </AuthCheck>
+      <div
+        className="w-9/12
+      border border-gray-900   
+      p-4 rounded-lg border-solid 
+      shadow-md z-1
+      backdrop-blur-[100px]
+      text-white
+      ml-[5%] mt-24"
+      >
+        <AuthCheck>
+          <CreateNewComment props={props} />
+        </AuthCheck>
 
-      <CommentList comments={comments} />
+        <CommentList comments={comments} />
+      </div>
     </main>
   );
 }
@@ -155,6 +160,7 @@ export default function Post(props) {
 function CreateNewComment({ props }) {
   const [content, setContent] = useState("");
   const postRef = doc(getFirestore(), props.path);
+  const { username } = useContext(UserContext);
 
   const isValid = content.length > 2;
 
@@ -180,6 +186,7 @@ function CreateNewComment({ props }) {
     const ref = doc(getFirestore(), postRef.path, "comments", id);
 
     const data = {
+      username,
       uid,
       content,
       createdAt: serverTimestamp(),
@@ -199,25 +206,25 @@ function CreateNewComment({ props }) {
         onSubmit={createComment}
         className="w-8/9
         bg-gray-800/30 border border-gray-900   
-        p-4 rounded-lg border-solid 
+        p-2 rounded-lg border-solid 
         shadow-md z-1
         backdrop-blur-[100px]
         text-white
         mx-[2%]
         mb-8 
-        flex justify-around"
+        flex justify-center"
       >
         <input
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Comment"
-          className="bg-gray-800/30 block h-12 w-1/3 my-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+          className="bg-gray-800/30 text-sm block h-12 w-1/3 my-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
           id="input"
         />
         <button
           type="submit"
           disabled={!isValid}
-          className="text-white my-3 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-1 text-center inline-flex items-center"
+          className="text-white ml-8 text-sm my-3 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-1 text-center inline-flex items-center"
         >
           Comment
         </button>

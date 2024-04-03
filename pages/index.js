@@ -19,7 +19,7 @@ export default function Home() {
               href="/enter"
               className="text-sm font-semibold leading-6 text-gray-300"
             >
-              Sign In<span aria-hidden="true"> →</span>
+              Sign In/Manage Account<span aria-hidden="true"> →</span>
             </Link>
           </div>
         </div>
