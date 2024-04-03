@@ -8,16 +8,20 @@ import {
   query,
   limit,
   getFirestore,
+  serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 
+import { auth } from "@/lib/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useRouter } from "next/router";
 import GlowingBlob from "@/components/GlowingBlob";
 import AuthCheck from "@/components/AuthCheck";
 import HeartButton from "@/components/HeartButton";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "@/lib/context";
+import toast from "react-hot-toast";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -33,6 +37,16 @@ export async function getStaticProps({ params }) {
 
     path = postRef.path;
   }
+
+  // const commentsRef = collectionGroup(getFirestore(), "comments");
+  // const postsQuery = query(
+  //   commentsRef,
+  //   orderBy("createdAt", "asc"),
+  //   where()
+  //   // limit(LIMIT)
+  // );
+
+  // const comments = (await getDocs(postsQuery)).docs.map(postToJSON);
 
   return {
     props: { post, path },
@@ -113,6 +127,90 @@ export default function Post(props) {
           )}
         </div>
       </div>
+
+      <AuthCheck>
+        <CreateNewComment props={props} />
+      </AuthCheck>
+
+      {/* <CommentList comments={comments} /> */}
     </main>
+  );
+}
+
+function CreateNewComment({ props }) {
+  const [content, setContent] = useState("");
+  const postRef = doc(getFirestore(), props.path);
+
+  // Validate if user is in the same house as the poster
+  // const isValid = title.length > 3 && title.length < 100;
+
+  function makeid(length) {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  }
+
+  // Create a new post in firestore
+  const createComment = async (e) => {
+    const id = makeid(100);
+
+    e.preventDefault();
+    const uid = auth.currentUser.uid;
+    const ref = doc(getFirestore(), postRef.path, "comments", id);
+
+    // const docRef = doc(getFirestore(), "usernames", username);
+    // const docSnap = await getDoc(docRef);
+    // const userDoc = docSnap.data();
+
+    const data = {
+      uid,
+      content,
+      createdAt: serverTimestamp(),
+      path: props.path,
+    };
+
+    await setDoc(ref, data);
+
+    toast.success("Comment made!");
+  };
+
+  return (
+    <div className="">
+      <h1 className="font-bold text-2xl mb-3">Comments</h1>
+
+      <form
+        onSubmit={createComment}
+        className="w-8/9
+        bg-gray-800/30 border border-gray-900   
+        p-4 rounded-lg border-solid 
+        shadow-md z-1
+        backdrop-blur-[100px]
+        text-white
+        mx-[2%]
+        mb-8 
+        flex justify-around"
+      >
+        <input
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Comment"
+          className="bg-gray-800/30 block h-12 w-1/3 my-3 rounded-md border-0 py-1.5 pl-1 text-white shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+        />
+        <button
+          type="submit"
+          // disabled={!isValid}
+          className="text-white my-3 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-1 text-center inline-flex items-center"
+        >
+          Comment
+        </button>
+      </form>
+    </div>
   );
 }
