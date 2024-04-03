@@ -1,27 +1,25 @@
 import ReactMarkdown from "react-markdown";
 
 export default function CommentList({ comments }) {
-  //   return comments
-  //     ? comments.map((comment) => (
-  //         <PostItem comment={comment} />
-  //       ))
-  //     : null;
+  return comments
+    ? comments.map((comment) => <Comment comment={comment} />)
+    : null;
 
-  return (
-    <>
-      <div
-        className="w-7/9 
-                  border border-gray-900   
-                  p-4 rounded-lg border-solid 
-                  shadow-md z-1
-                  text-white
-                  ml-[5%] mr-[5%]"
-      >
-        <Comment />
-        <Comment />
-      </div>
-    </>
-  );
+  // return (
+  //   <>
+  //     <div
+  //       className="w-7/9
+  //                 border border-gray-900
+  //                 p-4 rounded-lg border-solid
+  //                 shadow-md z-1
+  //                 text-white
+  //                 ml-[5%] mr-[5%]"
+  //     >
+  //       <Comment />
+  //       <Comment />
+  //     </div>
+  //   </>
+  // );
 }
 
 function Comment({ comment }) {
