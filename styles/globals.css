@@ -17,19 +17,19 @@ body {
   }
 
   .mo-sidebar {
-    @apply text-red-500 hover:bg-red-600
+    @apply text-red-500 hover:bg-red-600 z-50
   }
 
   .cr-sidebar {
-    @apply text-green-500 hover:bg-green-600
+    @apply text-green-500 hover:bg-green-600 z-50
   }
 
   .sm-sidebar {
-    @apply text-yellow-500 hover:bg-yellow-600
+    @apply text-yellow-500 hover:bg-yellow-600 z-50
   }
 
   .st-sidebar {
-    @apply text-blue-500 hover:bg-blue-600
+    @apply text-blue-500 hover:bg-blue-600 z-50
   }
 
   .sidebar-tooltip {

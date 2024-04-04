@@ -77,9 +77,9 @@ export default function CrawfurdPosts(props) {
   return (
     <>
       <GlowingBlob houseStyle={"crawfurd-blob"} />
-      <SideBar house={"cr-sidebar sidebar-icon group"} />
+      <SideBar house={"cr-sidebar sidebar-icon group"} className="z-50" />
 
-      <div className="ml-16">
+      <div className="ml-16 z-0">
         <div className="flex items-center justify-center flex-col">
           <PostFeed posts={posts} />
 

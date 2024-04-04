@@ -18,7 +18,7 @@ function PostItem({ post, admin }) {
       className="h-2/5 w-10/12
       bg-gray-800/30 border border-gray-900   
       my-6 p-8 rounded-lg border-solid 
-      shadow-md z-1
+      shadow-md z-10
       backdrop-blur-[100px]
       text-white"
     >

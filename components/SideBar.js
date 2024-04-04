@@ -20,7 +20,7 @@ const SideBar = ({ house }) => {
       {!username ? (
         <div
           className="fixed top-0 left-0 h-screen w-16 m-0 
-          flex flex-col bg-gray-900 text-white shadow z-0 items-center"
+          flex flex-col bg-gray-900 text-white shadow z-40 items-center"
         >
           <SideBarIcon
             icon={<FaHome size="28" />}
@@ -153,7 +153,7 @@ const SideBarIcon = ({ icon, text, link, house }) => (
     <div className={house}>
       {icon}
 
-      <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
+      <span className="sidebar-tooltip group-hover:scale-100 z-40">{text}</span>
     </div>
   </Link>
 );
