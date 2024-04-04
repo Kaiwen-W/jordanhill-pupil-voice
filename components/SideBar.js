@@ -11,6 +11,7 @@ import { MdOutlineClearAll } from "react-icons/md";
 
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
+import Link from "next/link";
 
 const SideBar = ({ house }) => {
   const { username } = useContext(UserContext);
@@ -148,13 +149,13 @@ const SideBar = ({ house }) => {
 };
 
 const SideBarIcon = ({ icon, text, link, house }) => (
-  <a href={link}>
+  <Link href={link}>
     <div className={house}>
       {icon}
 
       <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
     </div>
-  </a>
+  </Link>
 );
 
 const LineBreak = () => {

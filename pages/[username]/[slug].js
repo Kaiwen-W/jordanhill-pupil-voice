@@ -26,6 +26,7 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { UserContext } from "@/lib/context";
 import toast from "react-hot-toast";
+import { FaRegComment } from "react-icons/fa";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -147,7 +148,16 @@ export default function Post(props) {
       text-white
       ml-[5%] mt-24"
       >
-        <AuthCheck>
+        <AuthCheck
+          fallback={
+            <Link href="/enter">
+              <button className="flex mb-4 justify-center items-center rounded-md bg-gray-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800">
+                <FaRegComment className="text-blue-600" />
+                <span className="ml-1">Sign Up</span>
+              </button>
+            </Link>
+          }
+        >
           <CreateNewComment props={props} />
         </AuthCheck>
 

@@ -7,7 +7,7 @@ const UserProfile = ({ user }) => {
   return (
     <div
       className="bg-gray-800/30 border border-gray-900   
-        mx-0 my-6 p-8 rounded-lg border-solid 
+        mx-[3%] my-6 p-8 rounded-lg border-solid 
         shadow-md z-1
         backdrop-blur-[100px]
         "

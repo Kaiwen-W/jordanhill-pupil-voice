@@ -1,6 +1,10 @@
+import { UserContext } from "@/lib/context";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function Home() {
+  const { username } = useContext(UserContext);
+
   return (
     <main className="">
       <div className="relative isolate px-6 pt-8 lg:px-8">
@@ -14,14 +18,25 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="">
-            <Link
-              href="/enter"
-              className="text-sm font-semibold leading-6 text-gray-300"
-            >
-              Sign In/Manage Account<span aria-hidden="true"> →</span>
-            </Link>
-          </div>
+          {!username ? (
+            <div className="">
+              <Link
+                href="/enter"
+                className="text-sm font-semibold leading-6 text-gray-300"
+              >
+                Sign In<span aria-hidden="true"> →</span>
+              </Link>
+            </div>
+          ) : (
+            <div className="">
+              <Link
+                href="/enter"
+                className="text-sm font-semibold leading-6 text-gray-300"
+              >
+                Manage Account<span aria-hidden="true"> →</span>
+              </Link>
+            </div>
+          )}
         </div>
 
         <div
@@ -46,30 +61,30 @@ export default function Home() {
               Create Posts, like other posts!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
+              <Link
                 href="/hs/montgomerie/all"
                 className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Montgomerie
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/hs/crawfurd/all"
                 className="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Crawfurd
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/hs/stjohn/all"
                 className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 St. John
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/hs/smith/all"
                 className="rounded-md bg-yellow-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Smith
-              </a>
+              </Link>
             </div>
           </div>
         </div>
