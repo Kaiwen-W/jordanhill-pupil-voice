@@ -38,6 +38,7 @@ Specific Post Page (a post is made and is specifically clicked on)
   - is hydrated with realtime data from the firestore database
 - displays a component which allows other users to heart the post or for the poster themself to go to the edit page
   - implemented by adding a heart document under the post document and incrementing the heart count up by one
+- comments can now be made and are displayed on the page to each individual post
 
 Editing/Admin Page
 
