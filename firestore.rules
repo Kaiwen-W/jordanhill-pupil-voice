@@ -8,6 +8,11 @@ service cloud.firestore {
       	allow read;
       }
       
+      match /comments/{commentId} {
+      	allow read;
+      }
+      
+      
       match /users/{userId} {
       	allow read;
         allow create: if isValidUser(userId);
@@ -33,7 +38,7 @@ service cloud.firestore {
 
       match /users/{userId}/posts/{postId}/comments/{commentId} {
         allow read; 
-        allow write: if request.auth != null;
+        allow create: if request.auth != null;
       }
 
       // Users
@@ -96,11 +101,13 @@ service cloud.firestore {
   }
 }
 
+rules_version = '2';
+
 service firebase.storage {
   match /b/{bucket}/o {
-    match /uploads/{userId} {
-    	allow read; 
-      allow write: if request.auth.uid == userId; 
+    match /{allPaths=**} {
+      allow read; 
+      allow write: if request.auth != null;
     }
   }
 }
